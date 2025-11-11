@@ -12,15 +12,56 @@ void free_bst_sf(bst_sf *root) {
 }
 
 matrix_sf* add_mats_sf(const matrix_sf *mat1, const matrix_sf *mat2) {
-    return NULL;
+    matrix_sf *result = malloc(sizeof(matrix_sf) + mat1->num_rows*mat1->num_cols*sizeof(int));
+    if (result == NULL) {
+        return NULL;
+    }
+    result -> name = '!';
+    result -> num_rows = mat1 -> num_rows;
+    result -> num_cols = mat1 -> num_cols;
+    int length = result -> num_cols * result -> num_rows;
+    for (int i = 0; i < length; i++) {
+        result -> values[i] = mat1 -> values[i] + mat2 -> values[i];
+    }
+    return result;
 }
 
 matrix_sf* mult_mats_sf(const matrix_sf *mat1, const matrix_sf *mat2) {
-   return NULL;
+    matrix_sf *result = malloc(sizeof(matrix_sf) + mat1->num_rows*mat2->num_cols*sizeof(int));
+    if (result == NULL) {
+        return NULL;
+    }
+    result -> name = '!';
+    result -> num_rows = mat1 -> num_rows;
+    result -> num_cols = mat2 -> num_cols;
+
+    for (int i = 0; i < result->num_rows; i++) {
+        for (int j = 0; j < result->num_cols; j++) {
+            int sum = 0;
+            for (int k = 0; k < mat2->num_rows; k++) {
+                sum += mat1 -> values[i * mat1 -> num_cols + k] * mat2 -> values[k * mat2 -> num_cols + j]; // row i (mat1) * col j (mat2)
+            }
+            result -> values[i * result -> num_cols + j] = sum;
+        }
+    }
+    
+    return result;
 }
 
 matrix_sf* transpose_mat_sf(const matrix_sf *mat) {
-    return NULL;
+    matrix_sf *result = malloc(sizeof(matrix_sf) + mat->num_rows*mat->num_cols*sizeof(int));
+    if (result == NULL) {
+        return NULL;
+    }
+    result -> name = '!';
+    result -> num_rows = mat -> num_cols;
+    result -> num_cols = mat -> num_rows;
+    for (int i = 0; i < result -> num_rows; i++) {
+        for (int j = 0; j < result -> num_cols; j++) {
+            result -> values[i * result -> num_cols + j] = mat -> values[j * mat -> num_cols + i];
+        }
+    }
+    return result;
 }
 
 matrix_sf* create_matrix_sf(char name, const char *expr) {
