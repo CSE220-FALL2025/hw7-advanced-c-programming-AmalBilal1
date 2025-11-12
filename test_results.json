@@ -1,6 +1,6 @@
 {
   "id": "Criterion v2.4.1",
-  "passed": 14,
+  "passed": 23,
   "failed": 0,
   "errored": 0,
   "skipped": 0,
@@ -84,6 +84,78 @@
       ]
     },
     {
+      "name": "base_insert_bst",
+      "passed": 3,
+      "failed": 0,
+      "errored": 0,
+      "skipped": 0,
+      "tests": [
+        {
+          "name": "insert_bst03",
+          "assertions": 1,
+          "status": "PASSED"
+        },
+        {
+          "name": "insert_bst02",
+          "assertions": 1,
+          "status": "PASSED"
+        },
+        {
+          "name": "insert_bst01",
+          "assertions": 1,
+          "status": "PASSED"
+        }
+      ]
+    },
+    {
+      "name": "base_free_bst",
+      "passed": 3,
+      "failed": 0,
+      "errored": 0,
+      "skipped": 0,
+      "tests": [
+        {
+          "name": "free_bst03",
+          "assertions": 1,
+          "status": "PASSED"
+        },
+        {
+          "name": "free_bst02",
+          "assertions": 1,
+          "status": "PASSED"
+        },
+        {
+          "name": "free_bst01",
+          "assertions": 1,
+          "status": "PASSED"
+        }
+      ]
+    },
+    {
+      "name": "base_find_bst",
+      "passed": 3,
+      "failed": 0,
+      "errored": 0,
+      "skipped": 0,
+      "tests": [
+        {
+          "name": "search_bst03",
+          "assertions": 9,
+          "status": "PASSED"
+        },
+        {
+          "name": "search_bst02",
+          "assertions": 5,
+          "status": "PASSED"
+        },
+        {
+          "name": "search_bst01",
+          "assertions": 3,
+          "status": "PASSED"
+        }
+      ]
+    },
+    {
       "name": "base_create_matrix",
       "passed": 2,
       "failed": 0,
@@ -91,12 +163,12 @@
       "skipped": 0,
       "tests": [
         {
-          "name": "create01",
+          "name": "create02",
           "assertions": 4,
           "status": "PASSED"
         },
         {
-          "name": "create02",
+          "name": "create01",
           "assertions": 4,
           "status": "PASSED"
         }

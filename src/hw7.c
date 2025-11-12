@@ -1,14 +1,50 @@
 #include "hw7.h"
 
 bst_sf* insert_bst_sf(matrix_sf *mat, bst_sf *root) {
-    return NULL;
+    if (root == NULL) {
+        root = malloc(sizeof(bst_sf));
+        if (root == NULL) {
+            return NULL;
+        }
+        root->mat = mat;
+        root->left_child = NULL;
+        root->right_child = NULL;
+        return root;
+    }
+    else {
+        if ((mat -> name) < (root -> mat -> name)) {
+            root -> left_child = insert_bst_sf(mat, root -> left_child);
+        }
+        else if ((mat -> name) > (root -> mat -> name)) {
+            root -> right_child = insert_bst_sf(mat, root -> right_child);
+        }
+        return root;
+    }
 }
 
 matrix_sf* find_bst_sf(char name, bst_sf *root) {
-    return NULL;
+    if (root == NULL) {
+        return NULL;
+    }
+    if (name == (root -> mat -> name)) {
+        return root -> mat;
+    }
+    else if (name < (root -> mat -> name)) {
+        return find_bst_sf(name, root -> left_child);
+    }
+    else {
+        return find_bst_sf(name, root -> right_child);
+    }
 }
 
 void free_bst_sf(bst_sf *root) {
+    if (root == NULL) {
+        return;
+    }
+    free_bst_sf(root -> left_child);
+    free_bst_sf(root -> right_child);
+    free(root -> mat);
+    free(root);
 }
 
 matrix_sf* add_mats_sf(const matrix_sf *mat1, const matrix_sf *mat2) {
@@ -97,7 +133,6 @@ matrix_sf* create_matrix_sf(char name, const char *expr) {
 }
 
 char* infix2postfix_sf(char *infix) {
-    return NULL;
 }
 
 matrix_sf* evaluate_expr_sf(char name, char *expr, bst_sf *root) {
