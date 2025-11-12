@@ -1,6 +1,6 @@
 {
   "id": "Criterion v2.4.1",
-  "passed": 12,
+  "passed": 14,
   "failed": 0,
   "errored": 0,
   "skipped": 0,
@@ -79,6 +79,25 @@
         {
           "name": "add01",
           "assertions": 3,
+          "status": "PASSED"
+        }
+      ]
+    },
+    {
+      "name": "base_create_matrix",
+      "passed": 2,
+      "failed": 0,
+      "errored": 0,
+      "skipped": 0,
+      "tests": [
+        {
+          "name": "create01",
+          "assertions": 4,
+          "status": "PASSED"
+        },
+        {
+          "name": "create02",
+          "assertions": 4,
           "status": "PASSED"
         }
       ]

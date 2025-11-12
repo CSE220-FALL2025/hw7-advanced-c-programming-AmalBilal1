@@ -65,7 +65,35 @@ matrix_sf* transpose_mat_sf(const matrix_sf *mat) {
 }
 
 matrix_sf* create_matrix_sf(char name, const char *expr) {
-    return NULL;
+    int num_rows, num_cols;
+    const char *ptr = expr;
+    sscanf(ptr, "%d%d", &num_rows, &num_cols);
+    matrix_sf *result = malloc(sizeof(matrix_sf) + num_rows * num_cols * sizeof(int));
+    if (result == NULL) {
+        return NULL;
+    }
+    result -> name = name;
+    result -> num_rows = num_rows;
+    result -> num_cols = num_cols;
+    ptr = strchr(ptr, '[');
+    if (ptr == NULL) {
+        free(result);
+        return NULL;
+    }
+    ptr++;
+
+    int num_chars;
+    for (int i = 0; i < num_rows * num_cols; i++) {
+        while (*ptr && (*ptr == ' ' || *ptr == ';')) {
+            ptr++;
+        }
+        if (*ptr == ']') {
+            break;
+        }
+        sscanf(ptr, "%d%n", &result -> values[i], &num_chars);
+        ptr += num_chars;
+    }
+    return result;
 }
 
 char* infix2postfix_sf(char *infix) {
