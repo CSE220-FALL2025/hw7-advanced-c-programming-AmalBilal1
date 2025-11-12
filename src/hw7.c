@@ -132,7 +132,106 @@ matrix_sf* create_matrix_sf(char name, const char *expr) {
     return result;
 }
 
+int precedence(char operator) {
+    switch (operator) {
+        case '\'':
+            return 3;
+        case '*':
+            return 2;
+        case '+':
+            return 1;
+        case '(':
+            return 0;
+        default:
+            return -1;
+    }
+}
+
+struct node {
+    char value;
+    struct node* next;
+};
+
+struct node *push(struct node *stack, char value) {
+    struct node *new_node = malloc(sizeof(struct node));
+    if (new_node == NULL) {
+        return NULL;
+    }
+    new_node -> value = value;
+    new_node -> next = stack;
+    return new_node;
+}
+
+struct node *pop(struct node *stack, char *value) {
+    if (stack == NULL) {
+        return NULL;
+    }
+    struct node *top = stack;
+    *value = top -> value;
+    struct node *new_top = top -> next;
+    free(top);
+    return new_top;
+}
+
+struct node *peek(struct node *stack) {
+    return stack;
+}
+
 char* infix2postfix_sf(char *infix) {
+    char *postfix = malloc(256*sizeof(char)); // check if this space assumption is allowed!!!
+    if (postfix == NULL) {
+        return NULL;
+    }
+    
+    int position = 0;
+    struct node *head = NULL;
+
+    for (int i = 0; i < strlen(infix); i++) {
+        char c = infix[i];
+        if (c == ' ') {
+            continue;
+        }
+        else if (isalpha(c)) {
+            postfix[position] = c;
+            position++;
+        }
+        else if (c == '\'') {
+            postfix[position] = c;
+            position++;
+        }
+        else if (c == '(') {
+            head = push(head, c);
+        }
+        else if (c == ')') {
+            while (head != NULL && (head -> value) != '(') {
+                char operator;
+                head = pop(head, &operator);
+                postfix[position] = operator;
+                position++;
+            }
+            if (head != NULL) {
+                char remove;
+                head = pop(head, &remove);
+            }
+        }
+        else {
+            while (head != NULL && (head -> value) != '(' && precedence(head -> value) >= precedence(c)) {
+                char operator;
+                head = pop(head, &operator);
+                postfix[position] = operator;
+                position++;
+            }
+            head = push(head, c);
+        }
+    }
+    while (head != NULL) {
+        char operator;
+        head = pop(head, &operator);
+        postfix[position] = operator;
+        position++;
+    }
+    postfix[position + 1] = '\0';
+    return postfix;
 }
 
 matrix_sf* evaluate_expr_sf(char name, char *expr, bst_sf *root) {
