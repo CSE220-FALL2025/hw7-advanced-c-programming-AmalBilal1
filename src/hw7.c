@@ -178,7 +178,7 @@ struct node *peek(struct node *stack) {
 }
 
 char* infix2postfix_sf(char *infix) {
-    char *postfix = malloc(256*sizeof(char)); // check if this space assumption is allowed!!!
+    char *postfix = malloc((strlen(infix)+1)*sizeof(char));
     if (postfix == NULL) {
         return NULL;
     }
@@ -230,7 +230,7 @@ char* infix2postfix_sf(char *infix) {
         postfix[position] = operator;
         position++;
     }
-    postfix[position + 1] = '\0';
+    postfix[position] = '\0';
     return postfix;
 }
 
