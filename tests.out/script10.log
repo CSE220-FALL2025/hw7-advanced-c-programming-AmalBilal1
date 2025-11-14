@@ -1,0 +1,14 @@
+==21847== Memcheck, a memory error detector
+==21847== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==21847== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==21847== Command: ./bin/execute_script script10
+==21847== 
+5 5 6264 -25436 10326 15774 23091 156 -31252 19633 -7047 15344 51308 2268 -12862 7573 -7087 45722 14780 41569 -7283 8815 22125 14915 23325 -6118 -1202
+==21847== 
+==21847== HEAP SUMMARY:
+==21847==     in use at exit: 0 bytes in 0 blocks
+==21847==   total heap usage: 27 allocs, 27 frees, 10,558 bytes allocated
+==21847== 
+==21847== All heap blocks were freed -- no leaks are possible
+==21847== 
+==21847== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

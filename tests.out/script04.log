@@ -1,0 +1,14 @@
+==21838== Memcheck, a memory error detector
+==21838== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==21838== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==21838== Command: ./bin/execute_script script04
+==21838== 
+1 1 41058
+==21838== 
+==21838== HEAP SUMMARY:
+==21838==     in use at exit: 0 bytes in 0 blocks
+==21838==   total heap usage: 18 allocs, 18 frees, 9,389 bytes allocated
+==21838== 
+==21838== All heap blocks were freed -- no leaks are possible
+==21838== 
+==21838== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
