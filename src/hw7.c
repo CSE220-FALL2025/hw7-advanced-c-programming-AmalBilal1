@@ -1,3 +1,6 @@
+// Amal Bilal
+// 116127749
+
 #include "hw7.h"
 
 bst_sf* insert_bst_sf(matrix_sf *mat, bst_sf *root) {
